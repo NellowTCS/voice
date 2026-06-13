@@ -3,8 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>voice thingy</title>
-  <!--Eww Tailwind via CDN???? oh well-->
+  <title>voice 2</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-100 text-gray-900 font-sans min-h-screen flex flex-col items-center p-6">
@@ -27,9 +26,9 @@
         <div>
           <div class="flex justify-between mb-1">
             <label class="text-sm font-medium text-gray-700">Pitch</label>
-            <span id="pitchDisplay" class="text-sm text-gray-500">100 Hz</span>
+            <span id="pitchDisplay" class="text-sm text-gray-500">200 Hz</span>
           </div>
-          <input type="range" id="pitchInput" min="50" max="300" value="100" class="w-full">
+          <input type="range" id="pitchInput" min="100" max="400" value="200" class="w-full">
         </div>
 
         <div>
@@ -48,33 +47,36 @@
   </div>
 
   <script>
-    // Lol this was pain to find and research
     const PHONEMES = {
-      'a': { type: 'vowel', f1: 730, f2: 1090, f3: 2440, duration: 0.2 },
-      'e': { type: 'vowel', f1: 530, f2: 1840, f3: 2480, duration: 0.2 },
-      'i': { type: 'vowel', f1: 270, f2: 2290, f3: 3010, duration: 0.2 },
-      'o': { type: 'vowel', f1: 400, f2: 800, f3: 2600, duration: 0.2 },
-      'u': { type: 'vowel', f1: 300, f2: 870, f3: 2240, duration: 0.2 },
-      'y': { type: 'vowel', f1: 300, f2: 2000, f3: 2800, duration: 0.15 },
-      's': { type: 'fricative', freq: 5000, q: 2, duration: 0.15 },
-      'f': { type: 'fricative', freq: 4000, q: 1, duration: 0.15 },
-      'h': { type: 'fricative', freq: 2500, q: 1, duration: 0.1 },
-      'z': { type: 'fricative', freq: 4500, q: 5, duration: 0.15 },
-      't': { type: 'plosive', freq: 4000, duration: 0.05 },
-      'p': { type: 'plosive', freq: 1000, duration: 0.05 },
-      'k': { type: 'plosive', freq: 2500, duration: 0.05 },
-      'd': { type: 'plosive', freq: 300, duration: 0.05 },
-      'b': { type: 'plosive', freq: 200, duration: 0.05 },
-      'g': { type: 'plosive', freq: 1500, duration: 0.05 },
-      'm': { type: 'vowel', f1: 250, f2: 1200, f3: 2000, duration: 0.15 },
-      'n': { type: 'vowel', f1: 250, f2: 1800, f3: 2000, duration: 0.15 },
-      'l': { type: 'vowel', f1: 300, f2: 1200, f3: 2800, duration: 0.15 },
-      'r': { type: 'vowel', f1: 400, f2: 1200, f3: 1500, duration: 0.15 },
-      'w': { type: 'vowel', f1: 300, f2: 800, f3: 2200, duration: 0.15 },
-      'v': { type: 'fricative', freq: 1500, q: 2, duration: 0.1 }
+      'a': { type: 'vowel', f1: 730, f2: 1090, f3: 2440, duration: 0.22 },
+      'e': { type: 'vowel', f1: 530, f2: 1840, f3: 2480, duration: 0.22 },
+      'i': { type: 'vowel', f1: 270, f2: 2290, f3: 3010, duration: 0.22 },
+      'o': { type: 'vowel', f1: 400, f2: 800, f3: 2600, duration: 0.22 },
+      'u': { type: 'vowel', f1: 300, f2: 870, f3: 2240, duration: 0.22 },
+      'y': { type: 'vowel', f1: 300, f2: 2000, f3: 2800, duration: 0.08 },
+      's': { type: 'fricative', freq: 5000, q: 2, duration: 0.18 },
+      'f': { type: 'fricative', freq: 4000, q: 1, duration: 0.18 },
+      'h': { type: 'fricative', freq: 2500, q: 1, duration: 0.12 },
+      'z': { type: 'fricative', freq: 4500, q: 5, duration: 0.18 },
+      't': { type: 'plosive', freq: 4000, duration: 0.08 },
+      'p': { type: 'plosive', freq: 1000, duration: 0.08 },
+      'k': { type: 'plosive', freq: 2500, duration: 0.08 },
+      'd': { type: 'plosive', freq: 300, duration: 0.08 },
+      'b': { type: 'plosive', freq: 200, duration: 0.08 },
+      'g': { type: 'plosive', freq: 1500, duration: 0.08 },
+      'm': { type: 'vowel', f1: 250, f2: 1200, f3: 2000, duration: 0.10 },
+      'n': { type: 'vowel', f1: 250, f2: 1800, f3: 2000, duration: 0.10 },
+      'l': { type: 'vowel', f1: 300, f2: 1200, f3: 2800, duration: 0.10 },
+      'r': { type: 'vowel', f1: 400, f2: 1200, f3: 1500, duration: 0.08 },
+      'w': { type: 'vowel', f1: 300, f2: 800, f3: 2200, duration: 0.08 },
+      'v': { type: 'fricative', freq: 1500, q: 2, duration: 0.12 },
+      'c': { type: 'plosive', freq: 2500, duration: 0.08 },
+      'j': { type: 'fricative', freq: 3000, q: 2, duration: 0.15 },
+      'q': { type: 'plosive', freq: 2500, duration: 0.08 },
+      'x': { type: 'fricative', freq: 4500, q: 1.5, duration: 0.18 }
     };
 
-    let audioCtx, analyser, animationFrame;
+    let audioCtx, analyser, compressor, animationFrame;
     let isPlaying = false;
 
     const textInput = document.getElementById('textInput');
@@ -98,9 +100,21 @@
       if (!audioCtx) {
         const AudioContext = window.AudioContext || window.webkitAudioContext;
         audioCtx = new AudioContext();
+        
+        // Add a compressor to prevent overlapping sounds from clipping (causing static)
+        compressor = audioCtx.createDynamicsCompressor();
+        compressor.threshold.value = -12;
+        compressor.knee.value = 10;
+        compressor.ratio.value = 12;
+        compressor.attack.value = 0;
+        compressor.release.value = 0.25;
+
         analyser = audioCtx.createAnalyser();
         analyser.fftSize = 2048;
+        
+        compressor.connect(analyser);
         analyser.connect(audioCtx.destination);
+        
         startVisualizer();
       }
       if (audioCtx.state === 'suspended') {
@@ -119,12 +133,12 @@
     }
 
     function createVocalCordWave() {
-      const numHarmonics = 32;
+      const numHarmonics = 40;
       const real = new Float32Array(numHarmonics);
       const imag = new Float32Array(numHarmonics);
       for (let i = 1; i < numHarmonics; i++) {
         real[i] = 0;
-        imag[i] = 1.0 / (i * Math.PI);
+        imag[i] = (1.0 / (i * Math.PI)) * Math.pow(0.75, i);
       }
       return audioCtx.createPeriodicWave(real, imag);
     }
@@ -135,21 +149,70 @@
       
       const masterGain = audioCtx.createGain();
       masterGain.gain.setValueAtTime(0, time);
-      masterGain.gain.linearRampToValueAtTime(1, time + actualDuration * 0.2);
-      masterGain.gain.setValueAtTime(1, time + actualDuration * 0.8);
-      masterGain.gain.linearRampToValueAtTime(0, time + actualDuration);
-      masterGain.connect(analyser);
+      
+      if (phoneme.type === 'plosive') {
+        masterGain.gain.linearRampToValueAtTime(0.3, time + 0.01);
+        masterGain.gain.exponentialRampToValueAtTime(0.001, time + actualDuration);
+      } else if (phoneme.type === 'fricative') {
+        const attack = Math.min(0.02, actualDuration * 0.2);
+        const hold = Math.max(actualDuration - 0.03, actualDuration * 0.8);
+        masterGain.gain.linearRampToValueAtTime(0.15, time + attack);
+        masterGain.gain.setValueAtTime(0.15, time + hold);
+        masterGain.gain.linearRampToValueAtTime(0.001, time + actualDuration);
+      } else { // Vowels
+        const attack = Math.min(0.02, actualDuration * 0.2);
+        const hold = Math.max(actualDuration - 0.03, actualDuration * 0.8);
+        masterGain.gain.linearRampToValueAtTime(0.6, time + attack);
+        masterGain.gain.setValueAtTime(0.6, time + hold);
+        masterGain.gain.linearRampToValueAtTime(0.001, time + actualDuration);
+      }
+      
+      masterGain.connect(compressor);
 
       if (phoneme.type === 'vowel') {
         const source = audioCtx.createOscillator();
         source.setPeriodicWave(createVocalCordWave());
+        
         source.frequency.setValueAtTime(pitch, time);
-        source.frequency.exponentialRampToValueAtTime(pitch * 0.9, time + actualDuration);
+        source.frequency.exponentialRampToValueAtTime(pitch * 0.85, time + actualDuration);
+        
+        const vibrato = audioCtx.createOscillator();
+        vibrato.frequency.value = 5.5;
+        const vibratoGain = audioCtx.createGain();
+        vibratoGain.gain.value = pitch * 0.02; // Slightly reduced vibrato depth
+        vibrato.connect(vibratoGain);
+        vibratoGain.connect(source.frequency);
 
-        // holy bandpass
-        const f1 = audioCtx.createBiquadFilter(); f1.type = 'bandpass'; f1.frequency.value = phoneme.f1; f1.Q.value = 8;
-        const f2 = audioCtx.createBiquadFilter(); f2.type = 'bandpass'; f2.frequency.value = phoneme.f2; f2.Q.value = 10;
-        const f3 = audioCtx.createBiquadFilter(); f3.type = 'bandpass'; f3.frequency.value = phoneme.f3; f3.Q.value = 12;
+        const breathSource = audioCtx.createBufferSource();
+        breathSource.buffer = createNoiseBuffer();
+        breathSource.loop = true;
+        const breathFilter = audioCtx.createBiquadFilter();
+        breathFilter.type = 'highpass';
+        breathFilter.frequency.value = 4000;
+        const breathGain = audioCtx.createGain();
+        breathGain.gain.value = 0.04;
+        breathSource.connect(breathFilter);
+        breathFilter.connect(breathGain);
+        breathGain.connect(masterGain);
+
+        const formantShift = 1.15;
+        const targetF1 = phoneme.f1 * formantShift;
+        const targetF2 = phoneme.f2 * formantShift;
+        const targetF3 = phoneme.f3 * formantShift;
+
+        const f1 = audioCtx.createBiquadFilter(); f1.type = 'bandpass'; f1.Q.value = 8;
+        f1.frequency.setValueAtTime(targetF1 * 0.8, time); // Start 20% lower
+        f1.frequency.linearRampToValueAtTime(targetF1, time + actualDuration * 0.2); // Glide up
+        f1.frequency.linearRampToValueAtTime(targetF1 * 0.9, time + actualDuration); // Drift down
+
+        const f2 = audioCtx.createBiquadFilter(); f2.type = 'bandpass'; f2.Q.value = 10;
+        f2.frequency.setValueAtTime(targetF2 * 0.8, time);
+        f2.frequency.linearRampToValueAtTime(targetF2, time + actualDuration * 0.2);
+        f2.frequency.linearRampToValueAtTime(targetF2 * 0.9, time + actualDuration);
+
+        const f3 = audioCtx.createBiquadFilter(); f3.type = 'bandpass'; f3.Q.value = 12;
+        f3.frequency.setValueAtTime(targetF3 * 0.9, time);
+        f3.frequency.linearRampToValueAtTime(targetF3, time + actualDuration * 0.2);
 
         const g1 = audioCtx.createGain(); g1.gain.value = 1.0;
         const g2 = audioCtx.createGain(); g2.gain.value = 0.5;
@@ -160,7 +223,11 @@
         source.connect(f3); f3.connect(g3); g3.connect(masterGain);
 
         source.start(time);
-        source.stop(time + actualDuration);
+        source.stop(time + actualDuration + 0.05);
+        vibrato.start(time);
+        vibrato.stop(time + actualDuration + 0.05);
+        breathSource.start(time);
+        breathSource.stop(time + actualDuration + 0.05);
 
       } else if (phoneme.type === 'fricative' || phoneme.type === 'plosive') {
         const noiseSource = audioCtx.createBufferSource();
@@ -168,21 +235,22 @@
         noiseSource.loop = true;
 
         const filter = audioCtx.createBiquadFilter();
-        filter.type = phoneme.type === 'fricative' ? 'highpass' : 'bandpass';
-        filter.frequency.value = phoneme.freq;
+        filter.type = 'bandpass'; 
+        
+        if (phoneme.type === 'plosive') {
+          filter.frequency.setValueAtTime(phoneme.freq, time);
+          filter.frequency.exponentialRampToValueAtTime(phoneme.freq * 0.2, time + actualDuration);
+        } else {
+          filter.frequency.value = phoneme.freq;
+        }
+        
         filter.Q.value = phoneme.q || 1;
 
         noiseSource.connect(filter);
         filter.connect(masterGain);
 
-        if (phoneme.type === 'plosive') {
-          masterGain.gain.setValueAtTime(0, time);
-          masterGain.gain.linearRampToValueAtTime(2, time + 0.01);
-          masterGain.gain.exponentialRampToValueAtTime(0.01, time + actualDuration);
-        }
-
         noiseSource.start(time);
-        noiseSource.stop(time + actualDuration);
+        noiseSource.stop(time + actualDuration + 0.05);
       }
 
       return actualDuration;
@@ -201,7 +269,6 @@
       }
     }
 
-    // s p e a k
     function speak() {
       const text = textInput.value;
       if (!text) return;
@@ -209,7 +276,7 @@
       updatePlayState(true);
 
       const speed = parseFloat(speedInput.value);
-      const pitch = parseFloat(pitchInput.value);
+      const basePitch = parseFloat(pitchInput.value);
       let time = audioCtx.currentTime + 0.1;
       const cleanedText = text.toLowerCase().replace(/[^a-z\s]/g, '');
 
@@ -218,9 +285,12 @@
         if (char === ' ') {
           time += 0.2 / speed;
         } else {
-          const duration = schedulePhoneme(char, time, speed, pitch);
+          const progress = i / cleanedText.length;
+          const currentPitch = basePitch * (1 - progress * 0.2);
+          
+          const duration = schedulePhoneme(char, time, speed, currentPitch);
           time += duration;
-          time -= 0.02; 
+          time -= 0.02; // Reduced overlap time to prevent volume swelling
         }
       }
 
